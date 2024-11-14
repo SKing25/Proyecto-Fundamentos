@@ -6,8 +6,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
-import modeloDto.Piloto;
 import modeloDto.Vuelo;
 
 public class VueloDao implements ICrud{
@@ -57,51 +57,31 @@ public class VueloDao implements ICrud{
 
     @Override
     public boolean delete(Object object) {
-        lista.remove((Pi)piloto);
+        lista.remove((Vuelo) object);
         guardar();
         return true;
     }
 
     @Override
     public Object read(Object object) {
-        // TODO Auto-generated method stub
+        for (Vuelo vuelo : lista) {
+            if(vuelo.getNumero() == ((Vuelo) object).getNumero())
+                return vuelo;
+        }
         return null;
     }
 
     @Override
     public Object update(int index, Object object) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-
-    public boolean create(Piloto piloto){
-        
-    }
-
-    public Piloto read(String nombre){
-        for (Piloto piloto : lista) {
-            if (piloto.getNombre().equals(nombre))
-                return piloto;
-        }
-        return null;
-    }
-
-    public void update(int index, Piloto piloto){
-        lista.set(index, piloto);
+        lista.set(index, (Vuelo) object);
         guardar();
+        return true;
     }
 
-    public boolean delete(Piloto piloto){
-        
+    @Override
+    public List<Object> readAll() {
+        return null; //lista
     }
 
-    public ArrayList<Piloto> readAll(){
-        return lista;
-    }
-
-    public int buscarIndex(Piloto piloto){
-        
-    }
+    
 }
