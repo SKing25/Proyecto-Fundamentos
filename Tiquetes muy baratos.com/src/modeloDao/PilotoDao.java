@@ -72,7 +72,7 @@ public class PilotoDao implements ICrud{
     }
 
     @Override
-    public Object update(int index, Object object) {
+    public boolean update(int index, Object object) {
         lista.set(index, (Piloto) object);
         guardar();
         return true;

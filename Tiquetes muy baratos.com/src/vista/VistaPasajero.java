@@ -20,6 +20,7 @@ public class VistaPasajero extends JFrame {
 	public JButton btnRegistrar;
 	public JButton btnBuscarPasajero;
 	public JButton btnBorrar;
+	public JButton btnActualizar;
 
 	/**
 	 * Launch the application.
@@ -96,5 +97,9 @@ public class VistaPasajero extends JFrame {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBounds(325, 174, 85, 21);
 		contentPane.add(btnBorrar);
+		
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(325, 105, 85, 21);
+		contentPane.add(btnActualizar);
 	}
 }

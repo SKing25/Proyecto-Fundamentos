@@ -7,7 +7,7 @@ public interface ICrud {
 
     public Object read(Object object);
 
-    public Object update(int index, Object object);
+    public boolean update(int index, Object object);
 
     public boolean delete(Object object);
 
