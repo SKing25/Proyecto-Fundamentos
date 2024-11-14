@@ -2,12 +2,13 @@ package vista;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 
 public class VistaPasajero extends JFrame {
 
@@ -43,7 +44,7 @@ public class VistaPasajero extends JFrame {
 	 */
 	public VistaPasajero() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 828, 533);
+		setBounds(100, 100, 511, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -56,19 +57,23 @@ public class VistaPasajero extends JFrame {
 		id.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Numero de identificacion");
-		lblNewLabel.setBounds(67, 51, 113, 13);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(23, 51, 157, 13);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(144, 74, 36, 13);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(124, 75, 56, 13);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Edad");
-		lblNewLabel_2.setBounds(153, 109, 27, 13);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(144, 108, 36, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Genero");
-		lblNewLabel_3.setBounds(144, 132, 36, 13);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(136, 132, 44, 13);
 		contentPane.add(lblNewLabel_3);
 		
 		nombre = new JTextField();
