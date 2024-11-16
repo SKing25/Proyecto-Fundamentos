@@ -1,10 +1,13 @@
 package main;
 
-import controlador.ControladorPasajero;
-import vista.VistaPasajero;
+import controlador.*;
+import vista.*;
 
-public class Main {
-    public static void main(String[] args) {
-        ControladorPasajero cpasajero = new ControladorPasajero(new VistaPasajero());
-    }
+public class main {
+
+	public static void main(String[] args) {
+		ControladorPasajero cPasajero = new ControladorPasajero(new VistaPasajero());
+		ControladorPiloto cPiloto = new ControladorPiloto(new VistaPiloto());
+	}
+
 }

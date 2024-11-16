@@ -1,7 +1,8 @@
 package modeloDao;
 
 public interface ICrud {
-	public boolean create(Object object);
+    
+    public boolean create(Object object);
 
     public Object read(Object object);
 
@@ -10,4 +11,5 @@ public interface ICrud {
     public boolean delete(Object object);
 
     public int buscarIndex(Object object);
+
 }

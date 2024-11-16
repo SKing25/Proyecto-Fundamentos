@@ -1,28 +1,28 @@
 package modeloDao;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import modeloDto.Vuelo;
+import modeloDto.Pasajero;
 
-public class VueloDao implements ICrud{
-    private ArrayList<Vuelo> lista;
+public class PasajeroDao implements ICrud{
+    private ArrayList<Pasajero> lista;
     private ObjectInputStream entrada;
     private ObjectOutputStream salida;
     private String archivo;
 
-    public VueloDao(){
-        this.archivo = "vuelo";
+    public PasajeroDao(){
+        this.archivo = "pasajero";
         File file = new File(archivo);
         if(file.isFile()){
             try{
                 this.entrada = new ObjectInputStream(new FileInputStream(archivo));
-                this.lista = (ArrayList<Vuelo>) entrada.readObject();
+                this.lista = (ArrayList<Pasajero>) entrada.readObject();
                 this.entrada.close();
             }catch(Exception e){
                 System.out.println(e.getMessage());
@@ -50,38 +50,33 @@ public class VueloDao implements ICrud{
 
     @Override
     public boolean create(Object object) {
-        lista.add((Vuelo) object);
-        guardar();
-        return true;
-    }
-
-    @Override
-    public boolean delete(Object object) {
-        lista.remove((Vuelo) object);
-        guardar();
+        lista.add((Pasajero) object);
         return true;
     }
 
     @Override
     public Object read(Object object) {
-        for (Vuelo vuelo : lista) {
-            if(vuelo.getNumero() == ((Vuelo) object).getNumero())
-                return vuelo;
+        for (Pasajero pasajero : lista){
+            if(pasajero.getId() == ((Pasajero) object).getId()) return pasajero;
         }
         return null;
     }
 
     @Override
-    public boolean update(int index, Object object) {
-        lista.set(index, (Vuelo) object);
+    public void update(int index, Object object) {
+        lista.set(index, (Pasajero) object);
         guardar();
-        return true;
+        
     }
 
     @Override
-    public List<Object> readAll() {
-        return null; //lista
+    public boolean delete(Object object) {
+        lista.remove(object);
+        return true;
     }
 
-    
+    public List<Pasajero> readAll() {
+        return lista;
+
+    }
 }

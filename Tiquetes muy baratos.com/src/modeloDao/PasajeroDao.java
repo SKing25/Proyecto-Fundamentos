@@ -1,23 +1,23 @@
 package modeloDao;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import modeloDto.Pasajero;
 
 public class PasajeroDao implements ICrud{
-    private ArrayList<Pasajero> lista;
+	private ArrayList<Pasajero> lista;
     private ObjectInputStream entrada;
     private ObjectOutputStream salida;
     private String archivo;
 
     public PasajeroDao(){
-        this.archivo = "pasajero";
+        this.archivo = "Aqui se guardan los pasajeros";
         File file = new File(archivo);
         if(file.isFile()){
             try{
@@ -41,11 +41,6 @@ public class PasajeroDao implements ICrud{
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    } 
-
-    @Override
-    public int buscarIndex(Object object) {
-        return lista.indexOf(object);
     }
 
     @Override
@@ -56,30 +51,33 @@ public class PasajeroDao implements ICrud{
     }
 
     @Override
-    public boolean delete(Object object) {
-        lista.remove(object);
-        guardar();
-        return true;
-    }
-
-    @Override
     public Object read(Object object) {
-        for (Pasajero pasajero : lista) {
-            if(pasajero.getId() == ((Pasajero) object).getId())
-                return pasajero;
+        for (Pasajero pasajero : lista){
+            if(pasajero.getId() == ((Pasajero) object).getId()) return pasajero;
         }
         return null;
     }
 
     @Override
-    public boolean update(int index, Object object) {
+    public void update(int index, Object object) {
         lista.set(index, (Pasajero) object);
         guardar();
-        return true;
     }
 
     @Override
-    public List<Object> readAll() {
-        return null; //lista
+    public boolean delete(Object object) {
+        lista.remove(object);
+        guardar();
+        return true;
+    }
+    
+    @Override
+    public int buscarIndex(Object object) {
+        return lista.indexOf(object);
+    }
+
+    public List<Pasajero> readAll() {
+        return lista;
+
     }
 }

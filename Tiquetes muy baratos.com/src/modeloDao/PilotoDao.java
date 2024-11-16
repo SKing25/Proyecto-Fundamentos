@@ -11,13 +11,13 @@ import java.util.List;
 import modeloDto.Piloto;
 
 public class PilotoDao implements ICrud{
-    private ArrayList<Piloto> lista;
+	private ArrayList<Piloto> lista;
     private ObjectInputStream entrada;
     private ObjectOutputStream salida;
     private String archivo;
-
+    
     public PilotoDao(){
-        this.archivo = "piloto";
+        this.archivo = "Aqui se guardan los pilotos";
         File file = new File(archivo);
         if(file.isFile()){
             try{
@@ -44,15 +44,24 @@ public class PilotoDao implements ICrud{
     }
 
     @Override
-    public int buscarIndex(Object object) {
-        return lista.indexOf(object);
-    }
-
-    @Override
     public boolean create(Object object) {
         lista.add((Piloto) object);
         guardar();
         return true;
+    }
+
+    @Override
+    public Object read(Object object) {
+        for (Piloto piloto : lista){
+            if(piloto.getNombre().equalsIgnoreCase(((Piloto) object).getNombre())) return piloto;
+        }
+        return null;
+    }
+
+    @Override
+    public void update(int index, Object object) {
+        lista.set(index, (Piloto) object);
+        guardar();
     }
 
     @Override
@@ -61,26 +70,14 @@ public class PilotoDao implements ICrud{
         guardar();
         return true;
     }
-
-    @Override
-    public Object read(Object object) {
-        for (Piloto piloto : lista) {
-            if(piloto.getNombre().equalsIgnoreCase(((Piloto) object).getNombre()))
-                return piloto;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean update(int index, Object object) {
-        lista.set(index, (Piloto) object);
-        guardar();
-        return true;
-    } 
-
-    @Override
-    public List<Object> readAll() {
-        return null; //lista
-    }
     
+    @Override
+    public int buscarIndex(Object object) {
+        return lista.indexOf(object);
+    }
+
+    public List<Piloto> readAll() {
+        return lista;
+
+    }
 }

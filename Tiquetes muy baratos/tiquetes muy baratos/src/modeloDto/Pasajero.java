@@ -3,7 +3,7 @@ package modeloDto;
 import java.io.Serializable;
 
 public class Pasajero implements Serializable{
-	private int id;
+    private int id;
     private String nombre;
     private int edad;
     private String genero;

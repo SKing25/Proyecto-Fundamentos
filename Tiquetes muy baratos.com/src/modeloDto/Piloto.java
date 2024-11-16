@@ -3,7 +3,7 @@ package modeloDto;
 import java.io.Serializable;
 
 public class Piloto implements Serializable{
-    private String nombre;
+	private String nombre;
     private int horasVuelo;
 
     public String getNombre() {
