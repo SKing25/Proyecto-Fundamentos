@@ -2,11 +2,13 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import modeloDao.PilotoDao;
 import modeloDto.Piloto;
+import modeloDto.Reserva;
 import modeloDao.VueloDao;
 import modeloDto.Vuelo;
 import vista.VistaVuelo;
@@ -15,6 +17,7 @@ public class ControladorVuelo implements ActionListener{
     private VistaVuelo vista;
     private VueloDao modeloVuelo;
     private Vuelo vuelo;
+    
     private PilotoDao modeloPiloto;
     private Piloto piloto;
 
@@ -49,7 +52,15 @@ public class ControladorVuelo implements ActionListener{
             vuelo.setNumeroSillas(Integer.valueOf(vista.tfnumeroSillas.getText()));
             vuelo.setNumero(Integer.valueOf(vista.tfnumero.getText()));
             
-
+            ArrayList<Reserva> listaReserva = new ArrayList<>();
+                //Inicializar las reservas como null para indicar que están disponibles
+                for (int i = 0; i < vuelo.getNumeroSillas(); i++) {
+                    //listaReserva.add(null);  // null significa que la silla está disponible
+                    listaReserva.add(i, null);
+                }
+             
+            vuelo.setListaReserva(listaReserva);
+            
             if(modeloVuelo.create(vuelo)) JOptionPane.showMessageDialog(null, "se adiciono un nuevo vuelo a la agencia");
             else JOptionPane.showMessageDialog(null, "No se pudo adicionar el vuelo");
         }

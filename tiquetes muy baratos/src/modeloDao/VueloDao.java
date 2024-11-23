@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import modeloDto.Reserva;
 import modeloDto.Vuelo;
 
 public class VueloDao implements ICrud{
@@ -17,19 +18,24 @@ public class VueloDao implements ICrud{
     private String archivo;
 
     public VueloDao(){
-        this.archivo = "vuelo";
+    	this.archivo = "aqui se guardan los vuelos";
         File file = new File(archivo);
-        if(file.isFile()){
-            try{
+        if (file.isFile()) {
+            try {
                 this.entrada = new ObjectInputStream(new FileInputStream(archivo));
+                // Se asegura de que lista sea una lista vacía si el archivo está vacío o contiene null
                 this.lista = (ArrayList<Vuelo>) entrada.readObject();
+                if (this.lista == null) {
+                    this.lista = new ArrayList<>();  // Si el archivo estaba vacío, inicializamos una lista vacía
+                }
                 this.entrada.close();
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-                guardar();
+            } catch (Exception e) {
+                System.out.println("Error al leer el archivo: " + e.getMessage());
+                this.lista = new ArrayList<>();  // En caso de error, aseguramos que la lista sea vacía
+                guardar();  // Guardamos una lista vacía
             }
-        }else{
-            lista = new ArrayList<>();
+        } else {
+            this.lista = new ArrayList<>();  // Si el archivo no existe, inicializamos una lista vacía
         }
     }
 
@@ -77,9 +83,10 @@ public class VueloDao implements ICrud{
         guardar();
     }
 
-    public List<Vuelo> readAll() {
+    public ArrayList<Vuelo> readAll() {
         return lista;
+    }
+    
     }
 
     
-}

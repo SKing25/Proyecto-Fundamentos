@@ -10,19 +10,28 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
 
-public class VistaReservarPasajero extends JFrame {
+public class VistaReserva extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
 	public JTextField tFidPasajero;
-	public JComboBox<String> cBcSalida;
+	public JComboBox<Integer> cBvuelos;
 	public JButton btnReservar;
 	public JButton btnModificar;
 	public JButton btnBuscar;
 	public JButton btnEliminar;
-	public JComboBox<String> cBcLlegada;
 	public JTextField tFsillas;
+	public DefaultTableModel model;
+	public JTable tSillas;
+	public JScrollPane scrollPane;
+	public JButton btnBuscarVuelo;
 
 	/**
 	 * Launch the application.
@@ -31,7 +40,7 @@ public class VistaReservarPasajero extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VistaReservarPasajero frame = new VistaReservarPasajero();
+					VistaReserva frame = new VistaReserva();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,9 +52,9 @@ public class VistaReservarPasajero extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaReservarPasajero() {
+	public VistaReserva() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 861, 580);
+		setBounds(100, 100, 479, 437);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -54,64 +63,87 @@ public class VistaReservarPasajero extends JFrame {
 		
 		tFidPasajero = new JTextField();
 		tFidPasajero.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tFidPasajero.setBounds(187, 97, 109, 19);
+		tFidPasajero.setBounds(221, 62, 109, 19);
 		contentPane.add(tFidPasajero);
 		tFidPasajero.setColumns(10);
 		
-		cBcSalida = new JComboBox();
-		cBcSalida.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		cBcSalida.setBounds(187, 203, 109, 21);
-		contentPane.add(cBcSalida);
+		cBvuelos = new JComboBox();
+		cBvuelos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cBvuelos.setBounds(221, 148, 109, 21);
+		contentPane.add(cBvuelos);
 		
 		JLabel lblNewLabel = new JLabel("ID del pasajero");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(74, 98, 103, 13);
+		lblNewLabel.setBounds(114, 65, 97, 13);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Numero de sillas a ocupar");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(10, 149, 167, 13);
+		lblNewLabel_1.setBounds(48, 107, 163, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ciudad de salida");
+		JLabel lblNewLabel_2 = new JLabel("Seleccionar numero de vuelo");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(68, 207, 109, 13);
+		lblNewLabel_2.setBounds(30, 152, 181, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		btnReservar = new JButton("Reservar");
 		btnReservar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnReservar.setBounds(199, 306, 97, 21);
+		btnReservar.setBounds(358, 61, 97, 21);
 		contentPane.add(btnReservar);
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnModificar.setBounds(339, 306, 97, 21);
+		btnModificar.setBounds(358, 148, 97, 21);
 		contentPane.add(btnModificar);
 		
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnBuscar.setBounds(211, 351, 85, 21);
+		btnBuscar.setBounds(358, 103, 97, 21);
 		contentPane.add(btnBuscar);
 		
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEliminar.setBounds(339, 363, 85, 21);
+		btnEliminar.setBounds(358, 193, 97, 21);
 		contentPane.add(btnEliminar);
-		
-		cBcLlegada = new JComboBox();
-		cBcLlegada.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		cBcLlegada.setBounds(187, 253, 109, 21);
-		contentPane.add(cBcLlegada);
-		
-		JLabel lblNewLabel_3 = new JLabel("Ciudad de llegada");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(65, 259, 112, 13);
-		contentPane.add(lblNewLabel_3);
 		
 		tFsillas = new JTextField();
 		tFsillas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tFsillas.setBounds(187, 148, 109, 19);
+		tFsillas.setBounds(221, 104, 109, 19);
 		contentPane.add(tFsillas);
 		tFsillas.setColumns(10);
+		
+		btnBuscarVuelo = new JButton("buscar vuelo");
+		btnBuscarVuelo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBuscarVuelo.setBounds(210, 193, 127, 21);
+		contentPane.add(btnBuscarVuelo);
+		
+		tSillas = new JTable();
+		tSillas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		tSillas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tSillas.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Sillas", "Disponibilidad"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tSillas.setBounds(258, 35, 59, 110);
+		contentPane.add(tSillas);
+		model = (DefaultTableModel) tSillas.getModel();
+		
+		
+		scrollPane = new JScrollPane(tSillas);
+		scrollPane.setBounds(156, 239, 181, 151);
+		contentPane.add(scrollPane);
+		
+		
 	}
 }
