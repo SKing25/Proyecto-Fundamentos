@@ -28,7 +28,6 @@ public class VistaReserva extends JFrame {
 	public JButton btnBuscar;
 	public JButton btnEliminar;
 	public JTextField tFsillas;
-	public DefaultTableModel model;
 	public JTable tSillas;
 	public JScrollPane scrollPane;
 	public JButton btnBuscarVuelo;
@@ -53,6 +52,7 @@ public class VistaReserva extends JFrame {
 	 * Create the frame.
 	 */
 	public VistaReserva() {
+		setTitle("Reservas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 479, 437);
 		contentPane = new JPanel();
@@ -129,16 +129,14 @@ public class VistaReserva extends JFrame {
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, true
+				false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
 		tSillas.setBounds(258, 35, 59, 110);
-		contentPane.add(tSillas);
-		model = (DefaultTableModel) tSillas.getModel();
-		
+		contentPane.add(tSillas);	
 		
 		scrollPane = new JScrollPane(tSillas);
 		scrollPane.setBounds(156, 239, 181, 151);

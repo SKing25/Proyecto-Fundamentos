@@ -16,9 +16,7 @@ public class Vuelo implements Serializable{
     //public Vuelo() {
     //    super();
     //    listaReserva = new ArrayList<>(numeroSillas);
-    //    //Inicializar las reservas como null para indicar que están disponibles
     //    for (int i = 0; i < listaReserva.size(); i++) {
-    //        //listaReserva.add(null);  // null significa que la silla está disponible
     //        listaReserva.add(i, null);
     //    }
     //}
@@ -79,23 +77,16 @@ public class Vuelo implements Serializable{
 		this.listaReserva = listaReserva;
 	}
     
-	 // Método para verificar si una silla está disponible
     public boolean disponible(int index) {
-        if (index < 0 || index >= listaReserva.size()) {
-            return false;
-        }
-        return listaReserva.get(index) == null; // Si es null, está disponible
+        if (index < 0 || index >= listaReserva.size()) return false;
+        return listaReserva.get(index) == null;
     }
 
-    // Método para asignar una reserva a una silla
     public boolean asignarReserva(int index, Reserva reserva) {
         if (disponible(index)) {
-            listaReserva.set(index, reserva);  // Asignamos la reserva en la posición indicada
+            listaReserva.set(index, reserva);
             return true;
-        } else {
-            System.out.println("Silla ocupada");
-            return false;
-        }
+        } else return false;
     }
 
 }

@@ -27,6 +27,8 @@ public class ControladorPiloto implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+//---------------------------------------------------------REGISTRAR PILOTO---------------------------------------------------------------------
+		
 		if(e.getSource().equals(vista.btnRegistrar)) {
 			piloto = new Piloto();
 			piloto.setNombre( vista.tFnombre.getText());
@@ -35,7 +37,9 @@ public class ControladorPiloto implements ActionListener{
 			if(modelo.create(piloto)) JOptionPane.showMessageDialog(null, "Piloto adicionado con exito");
 			else JOptionPane.showConfirmDialog(null, "No se pudo adicionar al pasajero");
 		}
-		
+
+//---------------------------------------------------------BUSCAR PILOTO---------------------------------------------------------------------
+
 		if(e.getSource().equals(vista.btnBuscar)) {
 			Piloto piloto = new Piloto();
 			piloto.setNombre(vista.tFnombre.getText());
@@ -48,6 +52,8 @@ public class ControladorPiloto implements ActionListener{
 			else JOptionPane.showMessageDialog(null, "No se encontro al piloto");
 		}
 		
+//---------------------------------------------------------MODIFICAR PILOTO---------------------------------------------------------------------
+
 		if(e.getSource().equals(vista.btnModificar)) {
 			piloto = new Piloto();
 			piloto.setNombre(vista.tFnombre.getText());
@@ -70,6 +76,8 @@ public class ControladorPiloto implements ActionListener{
 			}
 		}
 		
+//---------------------------------------------------------BORRAR PILOTO---------------------------------------------------------------------
+
 		if(e.getSource().equals(vista.btnBorrar)) {
 			piloto = new Piloto();
 			piloto.setNombre(vista.tFnombre.getText());

@@ -2,8 +2,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -29,6 +27,8 @@ public class ControladorPasajero implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+//---------------------------------------------------------REGISTRAR PASAJERO---------------------------------------------------------------------
+		
 		if(e.getSource().equals(vista.btnRegistrar)) {
 			pasajero = new Pasajero();
 			pasajero.setId(Integer.valueOf(vista.tFid.getText()));
@@ -39,6 +39,8 @@ public class ControladorPasajero implements ActionListener{
 			if(modelo.create(pasajero)) JOptionPane.showMessageDialog(null, "Pasajero adicionado con exito");
 			else JOptionPane.showConfirmDialog(null, "No se pudo adicionar al pasajero");
 		}
+		
+//---------------------------------------------------------BUSCAR PASAJERO---------------------------------------------------------------------
 		
 		if(e.getSource().equals(vista.btnBuscar)) {
 			Pasajero pasajero = new Pasajero();
@@ -53,6 +55,8 @@ public class ControladorPasajero implements ActionListener{
 			}
 			else JOptionPane.showMessageDialog(null, "No se encontro al pasajero");
 		}
+		
+//---------------------------------------------------------MODIFICAR PASAJERO---------------------------------------------------------------------
 		
 		if(e.getSource().equals(vista.btnModificar)) {
 			pasajero = new Pasajero();
@@ -77,6 +81,8 @@ public class ControladorPasajero implements ActionListener{
 				}
 			}
 		}
+		
+//---------------------------------------------------------BORRAR PASAJERO---------------------------------------------------------------------
 		
 		if(e.getSource().equals(vista.btnBorrar)) {
 			pasajero = new Pasajero();

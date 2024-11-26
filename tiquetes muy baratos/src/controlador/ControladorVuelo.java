@@ -19,7 +19,6 @@ public class ControladorVuelo implements ActionListener{
     private Vuelo vuelo;
     
     private PilotoDao modeloPiloto;
-    private Piloto piloto;
 
     public ControladorVuelo(VistaVuelo vista) {
         this.vista = vista;
@@ -39,6 +38,8 @@ public class ControladorVuelo implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
+//---------------------------------------------------------REGISTRAR VUELO---------------------------------------------------------------------
+
         if(e.getSource().equals(vista.btnRegistrar)){
             vuelo = new Vuelo();
             vuelo.setCsalida(vista.tfcsalida.getText());
@@ -53,9 +54,7 @@ public class ControladorVuelo implements ActionListener{
             vuelo.setNumero(Integer.valueOf(vista.tfnumero.getText()));
             
             ArrayList<Reserva> listaReserva = new ArrayList<>();
-                //Inicializar las reservas como null para indicar que están disponibles
                 for (int i = 0; i < vuelo.getNumeroSillas(); i++) {
-                    //listaReserva.add(null);  // null significa que la silla está disponible
                     listaReserva.add(i, null);
                 }
              
@@ -65,6 +64,8 @@ public class ControladorVuelo implements ActionListener{
             else JOptionPane.showMessageDialog(null, "No se pudo adicionar el vuelo");
         }
 
+//---------------------------------------------------------BUSCAR VUELO---------------------------------------------------------------------
+        
         if(e.getSource().equals(vista.btnBuscar)){
             Vuelo vuelo = new Vuelo();
             vuelo.setNumero(Integer.valueOf(vista.tfnumero.getText()));
@@ -83,6 +84,8 @@ public class ControladorVuelo implements ActionListener{
     
         }
 
+//---------------------------------------------------------ELIMINAR VUELO---------------------------------------------------------------------
+        
         if(e.getSource().equals(vista.btnEliminar)){
         	vuelo = new Vuelo();
             vuelo.setNumero(Integer.valueOf(vista.tfnumero.getText()));
@@ -94,6 +97,8 @@ public class ControladorVuelo implements ActionListener{
             else JOptionPane.showMessageDialog(null, "El vuelo nunca fue registrado en la agencia");
         }
 
+//---------------------------------------------------------MODIFICAR VUELO---------------------------------------------------------------------
+        
         if(e.getSource().equals(vista.btnModificar)){
             vuelo = new Vuelo();
             vuelo.setNumero(Integer.valueOf(vista.tfnumero.getText()));

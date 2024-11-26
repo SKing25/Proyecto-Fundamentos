@@ -1,10 +1,11 @@
 package modeloDto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Reserva implements Serializable{
 	private Pasajero pasajero;
-	private int silla;
+	private ArrayList<Integer> silla = new ArrayList<>();
 	
 	public Pasajero getPasajero() {
 		return pasajero;
@@ -12,10 +13,10 @@ public class Reserva implements Serializable{
 	public void setPasajero(Pasajero pasajero) {
 		this.pasajero = pasajero;
 	}
-	public int getSilla() {
+	public ArrayList<Integer> getSilla() {
 		return silla;
 	}
-	public void setSilla(int silla) {
+	public void setSilla(ArrayList<Integer> silla) {
 		this.silla = silla;
 	}
 }
