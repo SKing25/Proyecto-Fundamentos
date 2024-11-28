@@ -27,7 +27,6 @@ public class VistaReserva extends JFrame {
 	public JButton btnModificar;
 	public JButton btnBuscar;
 	public JButton btnEliminar;
-	public JTextField tFsillas;
 	public JTable tSillas;
 	public JScrollPane scrollPane;
 	public JButton btnBuscarVuelo;
@@ -53,7 +52,7 @@ public class VistaReserva extends JFrame {
 	 */
 	public VistaReserva() {
 		setTitle("Reservas");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 479, 437);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,7 +68,7 @@ public class VistaReserva extends JFrame {
 		
 		cBvuelos = new JComboBox();
 		cBvuelos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		cBvuelos.setBounds(221, 148, 109, 21);
+		cBvuelos.setBounds(221, 103, 109, 21);
 		contentPane.add(cBvuelos);
 		
 		JLabel lblNewLabel = new JLabel("ID del pasajero");
@@ -77,14 +76,9 @@ public class VistaReserva extends JFrame {
 		lblNewLabel.setBounds(114, 65, 97, 13);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numero de sillas a ocupar");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(48, 107, 163, 13);
-		contentPane.add(lblNewLabel_1);
-		
 		JLabel lblNewLabel_2 = new JLabel("Seleccionar numero de vuelo");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(30, 152, 181, 13);
+		lblNewLabel_2.setBounds(28, 107, 181, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		btnReservar = new JButton("Reservar");
@@ -107,15 +101,9 @@ public class VistaReserva extends JFrame {
 		btnEliminar.setBounds(358, 193, 97, 21);
 		contentPane.add(btnEliminar);
 		
-		tFsillas = new JTextField();
-		tFsillas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tFsillas.setBounds(221, 104, 109, 19);
-		contentPane.add(tFsillas);
-		tFsillas.setColumns(10);
-		
 		btnBuscarVuelo = new JButton("buscar vuelo");
 		btnBuscarVuelo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnBuscarVuelo.setBounds(210, 193, 127, 21);
+		btnBuscarVuelo.setBounds(207, 148, 127, 21);
 		contentPane.add(btnBuscarVuelo);
 		
 		tSillas = new JTable();
@@ -139,7 +127,7 @@ public class VistaReserva extends JFrame {
 		contentPane.add(tSillas);	
 		
 		scrollPane = new JScrollPane(tSillas);
-		scrollPane.setBounds(156, 239, 181, 151);
+		scrollPane.setBounds(114, 192, 181, 198);
 		contentPane.add(scrollPane);
 		
 		

@@ -7,9 +7,9 @@ import vista.*;
 
 import controlador.*;
 
-public class ControladorMain implements ActionListener{
+public class ControladorMain implements ActionListener {
 	private VistaMain vista;
-	
+
 	public ControladorMain(VistaMain vista) {
 		this.vista = vista;
 		this.vista.mntmPasajero.addActionListener(this);
@@ -22,28 +22,28 @@ public class ControladorMain implements ActionListener{
 		this.vista.mntmSalir.addActionListener(this);
 		this.vista.setVisible(true);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	
+
 //---------------------------------------------------------PASAJERO---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmPasajero)) {
 			ControladorPasajero cPasajero = new ControladorPasajero(new VistaPasajero());
 		}
-		
+
 //---------------------------------------------------------PILOTO---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmPiloto)) {
 			ControladorPiloto cPiloto = new ControladorPiloto(new VistaPiloto());
 		}
-		
+
 //---------------------------------------------------------VUELO---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmVuelo)) {
 			ControladorVuelo cVuelo = new ControladorVuelo(new VistaVuelo());
 		}
-		
+
 //---------------------------------------------------------RESERVAS---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmReservas)) {
@@ -53,19 +53,20 @@ public class ControladorMain implements ActionListener{
 //---------------------------------------------------------INFORMES PASAJEROS---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmIPasajeros)) {
-			//falta nicolas
+			// falta nicolas
 		}
 
 //---------------------------------------------------------INFORMES VUELOS---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmIVuelos)) {
-			//falta nicolas
+			// falta nicolas
 		}
 
 //---------------------------------------------------------INFORMES VUELO DE UN PASAJERO---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmIVueloPasajero)) {
-			//falta nicolas
+			ControladorInformeVPasajero cInformeVPasajero = new ControladorInformeVPasajero(
+					new VistaInformeVPasajero());
 		}
 
 //---------------------------------------------------------SALIR---------------------------------------------------------------------

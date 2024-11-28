@@ -54,7 +54,7 @@ public class ControladorReservas implements ActionListener{
             Vuelo encontrado = (Vuelo) modeloVuelo.read(vuelo);
             
             if (encontrado != null) {
-            	modeloTable.setRowCount(0);
+				modeloTable.setRowCount(0);
                 for (int i = 0; i < encontrado.getListaReserva().size(); i++) {
                 	String disponibilidad;
                 	if (encontrado.disponible(i)) {
