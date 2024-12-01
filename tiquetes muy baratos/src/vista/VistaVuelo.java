@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -28,25 +26,6 @@ public class VistaVuelo extends JFrame {
 	public JButton btnRegistrar;
 	public JComboBox<String> cBpiloto;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaVuelo frame = new VistaVuelo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaVuelo() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 490, 326);
@@ -143,7 +122,7 @@ public class VistaVuelo extends JFrame {
 		lblNewLabel_5.setBounds(29, 232, 155, 13);
 		contentPane.add(lblNewLabel_5);
 
-		cBpiloto = new JComboBox();
+		cBpiloto = new JComboBox<String>();
 		cBpiloto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		cBpiloto.setBounds(167, 194, 98, 21);
 		contentPane.add(cBpiloto);

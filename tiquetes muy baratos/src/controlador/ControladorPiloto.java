@@ -9,11 +9,11 @@ import modeloDao.PilotoDao;
 import modeloDto.Piloto;
 import vista.VistaPiloto;
 
-public class ControladorPiloto implements ActionListener{
+public class ControladorPiloto implements ActionListener {
 	private VistaPiloto vista;
 	private PilotoDao modelo;
 	private Piloto piloto;
-	
+
 	public ControladorPiloto(VistaPiloto vista) {
 		this.vista = vista;
 		this.modelo = new PilotoDao();
@@ -23,71 +23,76 @@ public class ControladorPiloto implements ActionListener{
 		this.vista.btnBorrar.addActionListener(this);
 		this.vista.setVisible(true);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 //---------------------------------------------------------REGISTRAR PILOTO---------------------------------------------------------------------
-		
-		if(e.getSource().equals(vista.btnRegistrar)) {
+
+		if (e.getSource().equals(vista.btnRegistrar)) {
 			piloto = new Piloto();
-			piloto.setNombre( vista.tFnombre.getText());
+			piloto.setNombre(vista.tFnombre.getText());
 			piloto.setHorasVuelo(Integer.valueOf(vista.tFhorasVuelo.getText()));
-			
-			if(modelo.create(piloto)) JOptionPane.showMessageDialog(null, "Piloto adicionado con exito");
-			else JOptionPane.showConfirmDialog(null, "No se pudo adicionar al pasajero");
+
+			if (modelo.create(piloto))
+				JOptionPane.showMessageDialog(null, "Piloto adicionado con exito");
+			else
+				JOptionPane.showConfirmDialog(null, "No se pudo adicionar al pasajero");
 		}
 
 //---------------------------------------------------------BUSCAR PILOTO---------------------------------------------------------------------
 
-		if(e.getSource().equals(vista.btnBuscar)) {
+		if (e.getSource().equals(vista.btnBuscar)) {
 			Piloto piloto = new Piloto();
 			piloto.setNombre(vista.tFnombre.getText());
-			
+
 			Piloto encontrado = (Piloto) modelo.read(piloto);
-			
-			if(encontrado != null) {
+
+			if (encontrado != null) {
 				vista.tFhorasVuelo.setText(String.valueOf(encontrado.getHorasVuelo()));
-			}
-			else JOptionPane.showMessageDialog(null, "No se encontro al piloto");
+			} else
+				JOptionPane.showMessageDialog(null, "No se encontro al piloto");
 		}
-		
+
 //---------------------------------------------------------MODIFICAR PILOTO---------------------------------------------------------------------
 
-		if(e.getSource().equals(vista.btnModificar)) {
+		if (e.getSource().equals(vista.btnModificar)) {
 			piloto = new Piloto();
 			piloto.setNombre(vista.tFnombre.getText());
-			
+
 			piloto = (Piloto) modelo.read(piloto);
-			
-			if(piloto != null) {
-				int respuesta = JOptionPane.showConfirmDialog(null, "seguro de modificar?", "confirmar", JOptionPane.YES_NO_OPTION);
-				
-				if(respuesta == JOptionPane.YES_OPTION) {
+
+			if (piloto != null) {
+				int respuesta = JOptionPane.showConfirmDialog(null, "seguro de modificar?", "confirmar",
+						JOptionPane.YES_NO_OPTION);
+
+				if (respuesta == JOptionPane.YES_OPTION) {
 					piloto.setHorasVuelo(Integer.valueOf(vista.tFhorasVuelo.getText()));
-					
+
 					int index = modelo.buscarIndex(piloto);
-					
-					if(index != -1) {
+
+					if (index != -1) {
 						modelo.update(index, piloto);
 						JOptionPane.showMessageDialog(null, "piloto actualizado");
-					} else JOptionPane.showMessageDialog(null, "No se encontro al piloto");
+					} else
+						JOptionPane.showMessageDialog(null, "No se encontro al piloto");
 				}
 			}
 		}
-		
+
 //---------------------------------------------------------BORRAR PILOTO---------------------------------------------------------------------
 
-		if(e.getSource().equals(vista.btnBorrar)) {
+		if (e.getSource().equals(vista.btnBorrar)) {
 			piloto = new Piloto();
 			piloto.setNombre(vista.tFnombre.getText());
-			
+
 			piloto = (Piloto) modelo.read(piloto);
-			
-			if(modelo.buscarIndex(piloto) != -1){
-                if(modelo.delete(piloto)) JOptionPane.showMessageDialog(null, "Se elimino correctamente el piloto de la agencia");
-            }
-            else JOptionPane.showMessageDialog(null, "El piloto nunca fue registrado en la agencia");
+
+			if (modelo.buscarIndex(piloto) != -1) {
+				if (modelo.delete(piloto))
+					JOptionPane.showMessageDialog(null, "Se elimino correctamente el piloto de la agencia");
+			} else
+				JOptionPane.showMessageDialog(null, "El piloto nunca fue registrado en la agencia");
 		}
 	}
 }

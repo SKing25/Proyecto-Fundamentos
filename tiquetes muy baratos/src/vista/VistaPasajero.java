@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,8 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class VistaPasajero extends JFrame {
 
@@ -28,25 +24,6 @@ public class VistaPasajero extends JFrame {
 	public JButton btnModificar;
 	public JButton btnBorrar;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaPasajero frame = new VistaPasajero();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaPasajero() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 471, 405);

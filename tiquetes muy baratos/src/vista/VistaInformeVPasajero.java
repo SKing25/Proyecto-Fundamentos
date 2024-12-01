@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,25 +22,7 @@ public class VistaInformeVPasajero extends JFrame {
 	public JTextField textoVueloP;
 	private JScrollPane scrollPane_1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaInformeVPasajero frame = new VistaInformeVPasajero();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	@SuppressWarnings("serial")
 	public VistaInformeVPasajero() {
 		setTitle("Informacion vuelo de los pasajeros");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

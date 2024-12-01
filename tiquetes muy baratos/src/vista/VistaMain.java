@@ -22,8 +22,9 @@ public class VistaMain extends JFrame {
 	public JMenuItem mntmIPasajeros;
 	public JMenuItem mntmIVuelos;
 	public JMenuItem mntmIVueloPasajero;
+	public JMenuItem mntmIPilotos;
 	public JMenuItem mntmSalir;
-	
+	public JMenuItem mntmIVueloEsp;
 
 	/**
 	 * Launch the application.
@@ -52,59 +53,67 @@ public class VistaMain extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 785, 40);
 		contentPane.add(menuBar);
-		
+
 		JMenu mnDatos = new JMenu("Datos");
 		mnDatos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		menuBar.add(mnDatos);
-		
+
 		mntmPasajero = new JMenuItem("Pasajero");
 		mntmPasajero.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnDatos.add(mntmPasajero);
-		
+
 		mntmPiloto = new JMenuItem("Piloto");
 		mntmPiloto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnDatos.add(mntmPiloto);
-		
+
 		mntmVuelo = new JMenuItem("Vuelo");
 		mntmVuelo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnDatos.add(mntmVuelo);
-		
+
 		JMenu mnReservas = new JMenu("Reservas");
 		mnReservas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		menuBar.add(mnReservas);
-		
+
 		mntmReservas = new JMenuItem("Reservar un vuelo");
 		mntmReservas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnReservas.add(mntmReservas);
-		
+
 		JMenu mnInformes = new JMenu("Informes");
 		mnInformes.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		menuBar.add(mnInformes);
-		
+
 		mntmIPasajeros = new JMenuItem("Pasajeros");
 		mntmIPasajeros.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnInformes.add(mntmIPasajeros);
-		
+
 		mntmIVuelos = new JMenuItem("Vuelos");
 		mntmIVuelos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnInformes.add(mntmIVuelos);
-		
+
 		mntmIVueloPasajero = new JMenuItem("Vuelo de un pasajero");
 		mntmIVueloPasajero.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnInformes.add(mntmIVueloPasajero);
-		
+
+		mntmIVueloEsp = new JMenuItem("Vuelo especifico");
+		mntmIVueloEsp.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		mnInformes.add(mntmIVueloEsp);
+
+		mntmIPilotos = new JMenuItem("Pilotos");
+		mntmIPilotos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		mnInformes.add(mntmIPilotos);
+
 		JMenu mnSalir = new JMenu("Salir");
 		mnSalir.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		menuBar.add(mnSalir);
-		
+
 		mntmSalir = new JMenuItem("Salir");
 		mntmSalir.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mnSalir.add(mntmSalir);
-		
+
 		JLabel lblNewLabel = new JLabel("Bienvenido a Tiquetes muy baratos.com");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 31));
 		lblNewLabel.setBounds(0, 85, 554, 230);

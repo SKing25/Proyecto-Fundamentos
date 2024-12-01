@@ -13,8 +13,6 @@ import modeloDao.VueloDao;
 import modeloDto.*;
 
 public class ControladorInformeVPasajero implements ActionListener {
-	private Vuelo vuelo;
-	private Pasajero pasajero;
 	private VistaInformeVPasajero vista;
 	private PasajeroDao ModeloPasajero;
 	private VueloDao ModeloVuelo;
@@ -38,24 +36,36 @@ public class ControladorInformeVPasajero implements ActionListener {
 		if (e.getSource().equals(vista.btnInforme)) {
 			Pasajero pasajero = new Pasajero();
 			pasajero.setId(Integer.valueOf(vista.textoVueloP.getText()));
-			Pasajero encontrado = (Pasajero) ModeloPasajero.read(pasajero); 
-			
+			Pasajero encontrado = (Pasajero) ModeloPasajero.read(pasajero);
+
 			ModeloTabla1.setRowCount(0);
 			ModeloTabla2.setRowCount(0);
-			for(Vuelo vueloBuscado: ModeloVuelo.readAll()) {
+			for (Vuelo vueloBuscado : ModeloVuelo.readAll()) {
 				ArrayList<Reserva> reservas = vueloBuscado.getListaReserva();
-				for(Reserva reservaBuscada: reservas) {
-					if(reservaBuscada != null) {
+				for (Reserva reservaBuscada : reservas) {
+					if (reservaBuscada != null) {
 						Pasajero posiblePasajero = reservaBuscada.getPasajero();
-						if(posiblePasajero.getId() == encontrado.getId()) {
-							ModeloTabla1.addRow(new Object[] {vueloBuscado.getNumero(), vueloBuscado.getCsalida(), 
-									vueloBuscado.getCdestino(), vueloBuscado.getNumeroSillas(), reservaBuscada.getSilla().toString()});
-							System.out.println(reservaBuscada.getSilla().toString());
-							ModeloTabla2.addRow(new Object[] {vueloBuscado.getPiloto().getNombre(), vueloBuscado.getPiloto().getHorasVuelo()});
+						if (posiblePasajero.getId() == encontrado.getId()) {
+
+							StringBuilder sillaString = new StringBuilder();
+							for (int i = 0; i < reservaBuscada.getSilla().size(); i++) {
+								sillaString.append(reservaBuscada.getSilla().get(i) + 1);
+								if (i < reservaBuscada.getSilla().size() - 1) {
+									sillaString.append(", ");
+								}
+							}
+
+							ModeloTabla1.addRow(new Object[] { vueloBuscado.getNumero(), vueloBuscado.getCsalida(),
+									vueloBuscado.getCdestino(), vueloBuscado.getNumeroSillas(),
+									sillaString.toString() });
+							System.out.println(sillaString.toString());
+							ModeloTabla2.addRow(new Object[] { vueloBuscado.getPiloto().getNombre(),
+									vueloBuscado.getPiloto().getHorasVuelo() });
 						}
-					}else continue;
+					} else
+						continue;
 				}
-			}		
+			}
 		}
 	}
 }

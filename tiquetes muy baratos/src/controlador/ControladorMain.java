@@ -3,6 +3,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import vista.*;
 
 import controlador.*;
@@ -19,6 +21,8 @@ public class ControladorMain implements ActionListener {
 		this.vista.mntmIPasajeros.addActionListener(this);
 		this.vista.mntmIVuelos.addActionListener(this);
 		this.vista.mntmIVueloPasajero.addActionListener(this);
+		this.vista.mntmIVueloEsp.addActionListener(this);
+		this.vista.mntmIPilotos.addActionListener(this);
 		this.vista.mntmSalir.addActionListener(this);
 		this.vista.setVisible(true);
 	}
@@ -53,20 +57,32 @@ public class ControladorMain implements ActionListener {
 //---------------------------------------------------------INFORMES PASAJEROS---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmIPasajeros)) {
-			// falta nicolas
+			ControladorInformePasajero cIPasajeros = new ControladorInformePasajero(new VistaInformePasajero());
 		}
 
 //---------------------------------------------------------INFORMES VUELOS---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmIVuelos)) {
-			// falta nicolas
+			ControladorInformeVuelo cIVuelos = new ControladorInformeVuelo(new VistaInformeVuelo());
 		}
 
 //---------------------------------------------------------INFORMES VUELO DE UN PASAJERO---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmIVueloPasajero)) {
-			ControladorInformeVPasajero cInformeVPasajero = new ControladorInformeVPasajero(
-					new VistaInformeVPasajero());
+			ControladorInformeVPasajero cIVueloPasajero = new ControladorInformeVPasajero(new VistaInformeVPasajero());
+		}
+
+//---------------------------------------------------------INFORME DE VUELO ESPECIFICO---------------------------------------------------------------------
+
+		if (e.getSource().equals(vista.mntmIVueloEsp)) {
+			ControladorInformeVEspecifico cIVEspecifico = new ControladorInformeVEspecifico(
+					new VistaInformeVEspecifico());
+		}
+
+//---------------------------------------------------------INFORMES PILOTOS---------------------------------------------------------------------
+
+		if (e.getSource().equals(vista.mntmIPilotos)) {
+			ControladorInformePiloto cIPilotos = new ControladorInformePiloto(new VistaInformePilotos());
 		}
 
 //---------------------------------------------------------SALIR---------------------------------------------------------------------

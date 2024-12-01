@@ -1,55 +1,51 @@
 package vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
+import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import java.awt.Font;
 
 public class VistaInformeVuelo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField tFnVuelo;
-	private JTable table;
+	public JPanel contentPane;
+	public JTable VueloI;
+	public JButton VueloInforme;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaInformeVuelo frame = new VistaInformeVuelo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaInformeVuelo() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 882, 493);
+		setTitle("Informacion de los vuelos");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 719, 332);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		tFnVuelo = new JTextField();
-		tFnVuelo.setBounds(35, 51, 96, 19);
-		contentPane.add(tFnVuelo);
-		tFnVuelo.setColumns(10);
-		
-		table = new JTable();
-		table.setBounds(280, 172, 1, 1);
-		contentPane.add(table);
+
+		VueloInforme = new JButton("Informe Vuelos");
+		VueloInforme.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		VueloInforme.setBounds(270, 22, 148, 21);
+		contentPane.add(VueloInforme);
+
+		VueloI = new JTable();
+		VueloI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		VueloI.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Numero Vuelo", "Ciudad Salida",
+				"Ciudad Llegada", "Numero Puestos", "Nombre del Piloto", "Horas de Vuelo" }));
+		VueloI.getColumnModel().getColumn(0).setPreferredWidth(94);
+		VueloI.getColumnModel().getColumn(1).setPreferredWidth(83);
+		VueloI.getColumnModel().getColumn(2).setPreferredWidth(96);
+		VueloI.getColumnModel().getColumn(3).setPreferredWidth(87);
+		VueloI.getColumnModel().getColumn(4).setPreferredWidth(96);
+		VueloI.getColumnModel().getColumn(5).setPreferredWidth(107);
+		VueloI.setBounds(105, 145, 487, 235);
+		contentPane.add(VueloI);
+
+		JScrollPane scrollPane = new JScrollPane(VueloI);
+		scrollPane.setBounds(21, 77, 649, 161);
+		contentPane.add(scrollPane);
 	}
 }
