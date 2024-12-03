@@ -39,7 +39,7 @@ public class ControladorPasajero implements ActionListener {
 			if (modelo.create(pasajero))
 				JOptionPane.showMessageDialog(null, "Pasajero adicionado con exito");
 			else
-				JOptionPane.showConfirmDialog(null, "No se pudo adicionar al pasajero");
+				JOptionPane.showMessageDialog(null, "No se pudo adicionar al pasajero");
 		}
 
 //---------------------------------------------------------BUSCAR PASAJERO---------------------------------------------------------------------

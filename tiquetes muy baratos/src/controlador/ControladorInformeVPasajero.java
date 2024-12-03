@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import vista.VistaInformeVPasajero;
@@ -38,34 +39,43 @@ public class ControladorInformeVPasajero implements ActionListener {
 			pasajero.setId(Integer.valueOf(vista.textoVueloP.getText()));
 			Pasajero encontrado = (Pasajero) ModeloPasajero.read(pasajero);
 
-			ModeloTabla1.setRowCount(0);
-			ModeloTabla2.setRowCount(0);
-			for (Vuelo vueloBuscado : ModeloVuelo.readAll()) {
-				ArrayList<Reserva> reservas = vueloBuscado.getListaReserva();
-				for (Reserva reservaBuscada : reservas) {
-					if (reservaBuscada != null) {
-						Pasajero posiblePasajero = reservaBuscada.getPasajero();
-						if (posiblePasajero.getId() == encontrado.getId()) {
+			if (encontrado != null) {
+				ModeloTabla1.setRowCount(0);
+				ModeloTabla2.setRowCount(0);
+				for (Vuelo vueloBuscado : ModeloVuelo.readAll()) {
+					ArrayList<Reserva> reservas = vueloBuscado.getListaReserva();
+					for (Reserva reservaBuscada : reservas) {
+						if (reservaBuscada != null) {
+							Pasajero posiblePasajero = reservaBuscada.getPasajero();
+							if (posiblePasajero.getId() == encontrado.getId()) {
 
-							StringBuilder sillaString = new StringBuilder();
-							for (int i = 0; i < reservaBuscada.getSilla().size(); i++) {
-								sillaString.append(reservaBuscada.getSilla().get(i) + 1);
-								if (i < reservaBuscada.getSilla().size() - 1) {
-									sillaString.append(", ");
+								for (int silla : reservaBuscada.getSilla()) {
+									boolean duplicado = false;
+									for (int fila = 0; fila < ModeloTabla1.getRowCount(); fila++) {
+										if (ModeloTabla1.getValueAt(fila, 4).equals("Silla " + (silla + 1))) {
+											duplicado = true;
+											break;
+										}
+									}
+									
+									if (!duplicado) {
+										ModeloTabla1.addRow(new Object[] { vueloBuscado.getNumero(), vueloBuscado.getCsalida(),
+												vueloBuscado.getCdestino(), vueloBuscado.getNumeroSillas(),
+												("Silla " + (silla + 1))});
+										ModeloTabla2.addRow(new Object[] { vueloBuscado.getPiloto().getNombre(),
+												vueloBuscado.getPiloto().getHorasVuelo() });
+									}
+									
 								}
 							}
-
-							ModeloTabla1.addRow(new Object[] { vueloBuscado.getNumero(), vueloBuscado.getCsalida(),
-									vueloBuscado.getCdestino(), vueloBuscado.getNumeroSillas(),
-									sillaString.toString() });
-							System.out.println(sillaString.toString());
-							ModeloTabla2.addRow(new Object[] { vueloBuscado.getPiloto().getNombre(),
-									vueloBuscado.getPiloto().getHorasVuelo() });
-						}
-					} else
-						continue;
+						} else
+							continue;
+					}
 				}
-			}
+			} else
+				JOptionPane.showMessageDialog(null, "el pasajero no existe");
+			
 		}
+		
 	}
 }

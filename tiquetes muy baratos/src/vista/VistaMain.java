@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class VistaMain extends JFrame {
 
@@ -47,7 +48,7 @@ public class VistaMain extends JFrame {
 	 */
 	public VistaMain() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 568, 425);
+		setBounds(100, 100, 636, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -115,8 +116,9 @@ public class VistaMain extends JFrame {
 		mnSalir.add(mntmSalir);
 
 		JLabel lblNewLabel = new JLabel("Bienvenido a Tiquetes muy baratos.com");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 31));
-		lblNewLabel.setBounds(0, 85, 554, 230);
+		lblNewLabel.setBounds(0, 85, 622, 230);
 		contentPane.add(lblNewLabel);
 	}
 }

@@ -54,6 +54,12 @@ public class ControladorReservas implements ActionListener {
 			Vuelo encontrado = (Vuelo) modeloVuelo.read(vuelo);
 
 			if (encontrado != null) {
+				JOptionPane.showMessageDialog(null,
+						"Informacion del vuelo " + encontrado.getNumero() + "\nCiudad de salida: "
+								+ encontrado.getCsalida() + "\nCiudad de llegada: " + encontrado.getCdestino()
+								+ "\nNumero de sillas: " + encontrado.getNumeroSillas() + "\nNombre del piloto: "
+								+ encontrado.getPiloto().getNombre() + "\nHoras de duracion del vuelo: "
+								+ encontrado.getHorasVuelo());
 				modeloTable.setRowCount(0);
 				for (int i = 0; i < encontrado.getListaReserva().size(); i++) {
 					String disponibilidad;
@@ -100,28 +106,33 @@ public class ControladorReservas implements ActionListener {
 			Reserva nuevaReserva = new Reserva();
 			Pasajero pasajero = new Pasajero();
 			pasajero.setId(Integer.valueOf(vista.tFidPasajero.getText()));
+			Pasajero encontrado = (Pasajero) modeloPasajero.read(pasajero);
 
-			nuevaReserva.setPasajero((Pasajero) modeloPasajero.read(pasajero));
+			if (encontrado != null) {
+				nuevaReserva.setPasajero((Pasajero) modeloPasajero.read(encontrado));
 
-			ArrayList<Integer> sillas = new ArrayList<>();
-			sillas.add(indiceSilla);
-			nuevaReserva.setSilla(sillas);
+				ArrayList<Integer> sillas = new ArrayList<>();
+				sillas.add(indiceSilla);
+				nuevaReserva.setSilla(sillas);
 
-			vuelo.asignarReserva(indiceSilla, nuevaReserva);
-			modeloVuelo.update(modeloVuelo.buscarIndex(vuelo), vuelo);
+				vuelo.asignarReserva(indiceSilla, nuevaReserva);
+				modeloVuelo.update(modeloVuelo.buscarIndex(vuelo), vuelo);
 
-			modeloTable.setRowCount(0);
-			for (int i = 0; i < vuelo.getNumeroSillas(); i++) {
-				String disponibilidad;
-				if (vuelo.disponible(i)) {
-					disponibilidad = "disponible";
-				} else {
-					disponibilidad = "ocupada";
+				modeloTable.setRowCount(0);
+				for (int i = 0; i < vuelo.getNumeroSillas(); i++) {
+					String disponibilidad;
+					if (vuelo.disponible(i)) {
+						disponibilidad = "disponible";
+					} else {
+						disponibilidad = "ocupada";
+					}
+					modeloTable.addRow(new Object[] { "Silla " + (i + 1), disponibilidad });
 				}
-				modeloTable.addRow(new Object[] { "Silla " + (i + 1), disponibilidad });
-			}
 
-			JOptionPane.showMessageDialog(null, "reserva realizada");
+				JOptionPane.showMessageDialog(null, "reserva realizada");
+			} else
+				JOptionPane.showMessageDialog(null, "el pasajero no existe");
+
 		}
 
 //---------------------------------------------------------BUSCAR RESERVA---------------------------------------------------------------------

@@ -88,7 +88,11 @@ public class ControladorMain implements ActionListener {
 //---------------------------------------------------------SALIR---------------------------------------------------------------------
 
 		if (e.getSource().equals(vista.mntmSalir)) {
-			System.exit(0);
+			int respuesta = JOptionPane.showConfirmDialog(null, "seguro que quieres salir", "confirmar",
+					JOptionPane.YES_NO_OPTION);
+			if (respuesta == JOptionPane.YES_OPTION) {
+				System.exit(0);
+			}
 		}
 	}
 
